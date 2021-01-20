@@ -13,9 +13,16 @@ const controls = [
 export default function BuildControls(props) {
     return (
         <div className={styles.BuildControls}>
-            {controls.map(ctrl=>(
-                <BuildControl key={ctrl.label} label={ctrl.label} />
-            ))}
+            <p>Current Price: <strong>${props.price}</strong></p>
+            {controls.map(ctrl=>(<BuildControl  
+            key={ctrl.label} 
+            label={ctrl.label}
+            added={()=>props.ingredientAdded(ctrl.type)} 
+            removed={()=>props.ingredientRemove(ctrl.type)}
+            disabled={props.disabled[ctrl.type]}
+            />))
+            }
+            <button className={styles.OrderButton} disabled={!props.purchaseable} onClick={props.ordered}>Order Now</button>
         </div>
     )
 }
