@@ -8,7 +8,6 @@ import axios from '../../axios-orders'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import ErrorHandler from '../../hoc/ErrorHandler/ErrorHandler'
 
-
 const INGREDIENT_PRICES = {
     salad : 0.5,
     meat: 0.4,
@@ -31,6 +30,8 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount(){
+        console.log('Hello')
+        console.log(this.props);
         axios.get('https://react-my-burger-cb14e-default-rtdb.firebaseio.com/ingredients.json')
              .then(resp =>{
                 this.setState({
@@ -124,6 +125,15 @@ class BurgerBuilder extends Component {
         //          this.setState({loading: false, purchasing: false});
         //          console.log(err);
         //     });
+        const queryParams = [];
+        for(let i in this.state.ingredients){
+            queryParams.push(encodeURIComponent(i)+'='+encodeURIComponent(this.state.ingredients[i]));
+        }
+        const queryString = queryParams.join('&');
+        this.props.history.push({
+            pathname: '/checkout',
+            search: '?'+queryString
+        })
     }
 
     render() {
