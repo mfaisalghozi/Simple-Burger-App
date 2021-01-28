@@ -100,35 +100,11 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        // alert('You Continue!');
-        // this.setState({loading: true});
-        // const order = {
-        //     ingredients: this.state.ingredients,
-        //     price: this.state.totalPrice,
-        //     customer: {
-        //         name: 'MrafCommand',
-        //         address: {
-        //             street: 'Jalan Harapan 1',
-        //             zipCode: '14045',
-        //             country: 'Indonesia'
-        //         },
-        //         email: 'mrafgaming@gmail.com'
-        //     },
-        //     deliveryMethod: 'fastest'
-        // }
-        // axios.post('/orders.json', order)
-        //      .then(resp => {
-        //          this.setState({loading: false, purchasing: false});
-        //          console.log(resp);
-        //      })
-        //      .catch(err => {
-        //          this.setState({loading: false, purchasing: false});
-        //          console.log(err);
-        //     });
         const queryParams = [];
         for(let i in this.state.ingredients){
             queryParams.push(encodeURIComponent(i)+'='+encodeURIComponent(this.state.ingredients[i]));
         }
+        queryParams.push('price='+this.state.totalPrice);
         const queryString = queryParams.join('&');
         this.props.history.push({
             pathname: '/checkout',
