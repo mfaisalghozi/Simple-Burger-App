@@ -1,8 +1,10 @@
 const redux = require('redux');
 const createStore = redux.createStore;
 
+
 const initialState = {
-    counter: 0
+    counter: 0,
+    result: []
 }
 
 
@@ -30,6 +32,18 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 counter: state.counter - action.value
             }
+        case 'STORE_RESULT' :
+            return{
+                ...state,
+                result: state.result.concat({id: new Date(),value: state.counter})
+            }
+        case 'DELETE_RESULT' :
+            const newArr = [...state.result];
+            newArr.splice(id, 1); 
+            return {
+                ...state,
+                result: newArr
+            }
     }
 
 
@@ -48,6 +62,8 @@ store.subscribe(() => {
 //dispatching action
 store.dispatch({type: 'INC_COUNTER'});
 store.dispatch({type: 'ADD_COUNTER', value: 20});
+store.dispatch({type: 'STORE_RESULT'});
 store.dispatch({type: 'DEC_COUNTER'});
-store.dispatch({type: 'SUB_COUNTER'}, value: 10);
+store.dispatch({type: 'SUB_COUNTER', value: 10});
+store.dispatch({type: 'STORE_RESULT'});
 
