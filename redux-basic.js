@@ -1,16 +1,13 @@
 const redux = require('redux');
 const createStore = redux.createStore;
 
-
 const initialState = {
     counter: 0,
     result: []
 }
 
-
 //reducer
 const rootReducer = (state = initialState, action) => {
-   
     switch (action.type){
         case 'INC_COUNTER' : 
             return{
@@ -45,8 +42,6 @@ const rootReducer = (state = initialState, action) => {
                 result: newArr
             }
     }
-
-
     return state;
 };
 
@@ -66,4 +61,3 @@ store.dispatch({type: 'STORE_RESULT'});
 store.dispatch({type: 'DEC_COUNTER'});
 store.dispatch({type: 'SUB_COUNTER', value: 10});
 store.dispatch({type: 'STORE_RESULT'});
-
