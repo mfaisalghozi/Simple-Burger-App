@@ -3,8 +3,10 @@ import './App.css';
 import Layout from './components/Layout/Layout'
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 import Checkout from './containers/Checkout/Checkout';
-import { Route, Switch } from 'react-router-dom';
 import Orders from './containers/Orders/Orders';
+
+import { Route, Switch } from 'react-router-dom';
+
 
 function App() {
   return (

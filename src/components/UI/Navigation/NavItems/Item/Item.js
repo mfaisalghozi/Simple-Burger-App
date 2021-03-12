@@ -9,7 +9,10 @@ export default function Item(props) {
             <NavLink 
                 to={props.link} 
                 exact={props.exact}
-                activeClassName={styles.active}>{props.children}</NavLink>
+                activeClassName={styles.active}
+            >
+                {props.children}
+            </NavLink>
             </li>
         </div>
     )
